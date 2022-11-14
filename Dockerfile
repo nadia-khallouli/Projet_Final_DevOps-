@@ -12,7 +12,7 @@ WORKDIR /opt
 VOLUME /opt
 
 # Expose is NOT supported by Heroku
-EXPOSE 8000 		
+EXPOSE 8080 		
 
 # variable
 ENV ODOO_URL="https://www.odoo.com/"
