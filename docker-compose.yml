@@ -12,19 +12,19 @@ services:
             - odoo
         volumes:
             - 'pgdata:/var/lib/postgresql/data'
-        container_name: db
+        container_name: db_odoo
         image: 'postgres:13'
     odoo:
         depends_on:
             - postgres
         ports:
-            - '8069:8069'
-        container_name: odoo
+            - '8000:8000'
+        container_name: d_odoo
         networks:
             - odoo
         volumes:
-            - '${PWD}/config:/etc/odoo'
-            - '${PWD}/addons:/mnt/extra-addons'
+            - '$PWD/config:/etc/odoo'
+            - '$PWD/addons:/mnt/extra-addons'
             - 'odoo-web-data:/var/lib/odoo'
         environment:
             - USER=toto
@@ -34,9 +34,15 @@ services:
 
     ic-webapp:
       image : ic-webapp:1.0
-      restart: always
       ports: 
-       - 4000:5000 
+       - 8080:8080
+      volumes:
+       - type: bind
+         source: ./app.py
+         target: /data/app.py
+      depends_on:
+       - pgadmin
+       - odoo
 
     pgadmin:
       image: dpage/pgadmin4
@@ -44,15 +50,21 @@ services:
       restart: always
       ports:
        - "6081:80"
+      networks:
+       - odoo
       environment:
-      PGADMIN_DEFAULT_EMAIL: admin@local.com
-      PGADMIN_DEFAULT_PASSWORD: admin
+       - PGADMIN_DEFAULT_EMAIL=toto@domain.com
+       - PGADMIN_DEFAULT_PASSWORD=toto
       volumes:
        - pgadmin-data:/var/lib/pgadmin
+      depends_on:
+       - postgres
 volumes:
     odoo-web-data:
         external: FALSE
     pgdata:
+        external: FALSE
+    pgadmin-data:
         external: FALSE
 networks:
     odoo:
