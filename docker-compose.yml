@@ -1,0 +1,59 @@
+version: '2.12.2'
+services:
+    postgres:
+        restart: always
+        ports:
+        - "6032:5432"
+        environment:
+            - POSTGRES_USER=toto
+            - POSTGRES_PASSWORD=toto
+            - POSTGRES_DB=postgres
+        networks:
+            - odoo
+        volumes:
+            - 'pgdata:/var/lib/postgresql/data'
+        container_name: db
+        image: 'postgres:13'
+    odoo:
+        depends_on:
+            - postgres
+        ports:
+            - '8069:8069'
+        container_name: odoo
+        networks:
+            - odoo
+        volumes:
+            - '${PWD}/config:/etc/odoo'
+            - '${PWD}/addons:/mnt/extra-addons'
+            - 'odoo-web-data:/var/lib/odoo'
+        environment:
+            - USER=toto
+            - PASSWORD=toto
+            - HOST=db_odoo
+        image: odoo:13.0
+
+    ic-webapp:
+      image : ic-webapp:1.0
+      restart: always
+      ports: 
+       - 4000:5000 
+
+    pgadmin:
+      image: dpage/pgadmin4
+      container_name: pgadmin4_container
+      restart: always
+      ports:
+       - "6081:80"
+      environment:
+      PGADMIN_DEFAULT_EMAIL: admin@local.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+      volumes:
+       - pgadmin-data:/var/lib/pgadmin
+volumes:
+    odoo-web-data:
+        external: FALSE
+    pgdata:
+        external: FALSE
+networks:
+    odoo:
+        driver: bridge

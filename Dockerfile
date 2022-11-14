@@ -3,7 +3,7 @@ FROM python:3.6-alpine
 
 # Install flask
 RUN pip install flask==1.1.2
-# ADD ./webapp/requirements.txt /tmp/requirements.txt
+ADD ./requirements.txt /tmp/requirements.txt
 
 # Install dependencies
 RUN pip3 install --no-cache-dir -q -r /tmp/requirements.txt
