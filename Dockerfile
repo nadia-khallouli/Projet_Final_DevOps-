@@ -8,12 +8,15 @@ RUN pip install flask==1.1.2
 ADD . /opt/
 WORKDIR /opt
 
+#volume
+VOLUME /opt
+
 # Expose is NOT supported by Heroku
 EXPOSE 8000 		
 
 # variable
-ENV var=ODOO_URL
-ENV var=PGADMIN_URL
+ENV ODOO_URL="https://www.odoo.com/"
+ENV PGADMIN_URL="https://www.pgadmin.org/"
 
 # Run the app. 		
 ENTRYPOINT [ "python", "app.py" ]
