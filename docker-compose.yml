@@ -9,22 +9,23 @@ services:
             - POSTGRES_PASSWORD=toto
             - POSTGRES_DB=postgres
         networks:
-            - odoo
+            - ic_network
         volumes:
             - 'pgdata:/var/lib/postgresql/data'
+            # - ${PWD}/servers.json:/pgadmin4/servers.json
         container_name: db_odoo
         image: 'postgres:13'
     odoo:
         depends_on:
             - postgres
         ports:
-            - '8000:8000'
+            - '8069:8069'
         container_name: d_odoo
         networks:
-            - odoo
+            - ic_network
         volumes:
-            - '$PWD/config:/etc/odoo'
-            - '$PWD/addons:/mnt/extra-addons'
+            - '/data_docker/config:/etc/odoo'
+            - '/data_docker/addons:/mnt/extra-addons'
             - 'odoo-web-data:/var/lib/odoo'
         environment:
             - USER=toto
@@ -33,16 +34,15 @@ services:
         image: odoo:13.0
 
     ic-webapp:
+      container_name: ic_network
       image : ic-webapp:1.0
       ports: 
        - 8080:8080
-      volumes:
-       - type: bind
-         source: ./app.py
-         target: /data/app.py
-      depends_on:
-       - pgadmin
-       - odoo
+      environment:
+      - "ODOO_URL=http://192.168.163.1:8069/"
+      - "PGADMIN_URL=http://192.168.163.1:6081/"
+      networks:
+       - ic_network
 
     pgadmin:
       image: dpage/pgadmin4
@@ -51,7 +51,7 @@ services:
       ports:
        - "6081:80"
       networks:
-       - odoo
+       - ic_network
       environment:
        - PGADMIN_DEFAULT_EMAIL=toto@domain.com
        - PGADMIN_DEFAULT_PASSWORD=toto
@@ -61,11 +61,9 @@ services:
        - postgres
 volumes:
     odoo-web-data:
-        external: FALSE
     pgdata:
-        external: FALSE
     pgadmin-data:
-        external: FALSE
 networks:
-    odoo:
+    ic_network:
         driver: bridge
+        name: ic_network
