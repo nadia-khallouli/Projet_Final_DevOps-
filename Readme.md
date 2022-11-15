@@ -16,7 +16,7 @@ Création de l’image à partir du Dockerfile:
 
 Visualisation des sites web grâce au container lancé: 
  - docker run -d --name test-ic-webapp ic-webapp:1.0
- **- Odoo** : 192.168.163.1:8069
+  **- Odoo** : 192.168.163.1:8069
 ![image](https://user-images.githubusercontent.com/79446351/201697619-0902d797-81b8-450b-b28a-01d473c939ad.png)
 
  **- Pgadmin** : 192.168.163.1:80
