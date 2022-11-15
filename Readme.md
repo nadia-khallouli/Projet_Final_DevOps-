@@ -16,13 +16,18 @@ Création de l’image à partir du Dockerfile:
 
 Visualisation des sites web grâce au container lancé: 
  - docker run -d --name test-ic-webapp ic-webapp:1.0
+
+
   **- Odoo** : 192.168.163.1:8069
+  
 ![image](https://user-images.githubusercontent.com/79446351/201697619-0902d797-81b8-450b-b28a-01d473c939ad.png)
 
  **- Pgadmin** : 192.168.163.1:80
+ 
 ![image](https://user-images.githubusercontent.com/79446351/201699583-c0f76956-6b1b-400e-82fa-9118c3eac3d2.png)
 
 Visualisation après connexion sur **Pgadmin**
+
 ![image](https://user-images.githubusercontent.com/79446351/201729253-4634f6d9-803a-4b2d-a89d-55f375843bff.png)
 
 ## - Docker Registry
@@ -36,6 +41,7 @@ Ajout d'un tag à notre image pour pouvoir la push sur notre registre privé :
 Exécution d'un push de notre image sur notre registre privée :
  - docker push localhost:4001/ic-webapp:1.0
 Nous pouvons observer la présence notre image dans notre registre privé comme le montre la figure suivante:
+
 ![image](https://user-images.githubusercontent.com/79446351/201705023-9c2f6265-5cda-41ce-8c7b-6f44d7c1e995.png)
 
 
@@ -57,6 +63,8 @@ Nous pouvons observer la présence notre image sur dockerhub comme le montre la 
 
 Après avoir exécuter notre docker-compose file via la commande :
  - docker-compose up -d
+
+
 ![image](https://user-images.githubusercontent.com/79446351/201889131-5befa291-fec4-42ea-b69e-98893204428d.png)
 
 Nous avons le résultat suivant dans le navigateur :
