@@ -2,7 +2,7 @@
  
  
  ## Membres du groupe 
-KHALLOULI Nadia
+- [ ] KHALLOULI Nadia
 MANNI Ikram
 MVOUAMA Ben 
 NDIAYE Baye Ibrahima
