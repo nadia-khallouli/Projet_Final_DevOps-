@@ -1,6 +1,9 @@
 #Grab alpine
 FROM python:3.6-alpine
 
+#mainteneur email
+LABEL email="lorine@gmail.com"
+
 # Install flask
 RUN pip install flask==1.1.2
 
