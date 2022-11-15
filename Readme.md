@@ -1,14 +1,14 @@
-## EXAMEN FINAL DOCKER. 
+# EXAMEN FINAL DOCKER. 
  
  
  
- ##### **Membres du groupe** 
+ ### **Membres du groupe** 
 KHALLOULI Nadia -  MANNI Ikram - MVOUAMA Ben - NDIAYE Baye Ibrahima - ZOSSOUNGBO Lorine
 
 
 
 
-### Construction du Dockerfile
+## Construction du Dockerfile
 Création de l’image à partir du Dockerfile:
  - docker build -t ic-webapp:1.0 .
 
@@ -25,7 +25,7 @@ Visualisation des sites web grâce au container lancé:
 Visualisation après connexion sur **Pgadmin**
 ![image](https://user-images.githubusercontent.com/79446351/201729253-4634f6d9-803a-4b2d-a89d-55f375843bff.png)
 
-### - Docker Registry
+## - Docker Registry
 Création d'un registre privée pour ic groupe pour stocker les images de l’entreprise :
  - docker run -d -p 4001:5000 --net ic-groupe --name registry-ic-groupe registry:2
 Création d'une interface web pour notre registre privé :
