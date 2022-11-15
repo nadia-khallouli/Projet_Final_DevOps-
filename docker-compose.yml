@@ -12,7 +12,6 @@ services:
             - ic_network
         volumes:
             - 'pgdata:/var/lib/postgresql/data'
-            # - ${PWD}/servers.json:/pgadmin4/servers.json
         container_name: db_odoo
         image: 'postgres:13'
     odoo:
