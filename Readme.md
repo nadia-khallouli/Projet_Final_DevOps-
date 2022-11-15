@@ -2,13 +2,15 @@
  
  
  
- ### Membres du groupe 
+ #### Membres du groupe 
 - KHALLOULI Nadia
 - MANNI Ikram
 - MVOUAMA Ben 
 - NDIAYE Baye Ibrahima
 - ZOSSOUNGBO Lorine
 
+
+### Construction du Dockerfile
 Création de l’image à partir du Dockerfile:
  - docker build -t ic-webapp:1.0 .
 
