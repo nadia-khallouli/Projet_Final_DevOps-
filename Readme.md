@@ -36,16 +36,20 @@ Visualisation après connexion sur **Pgadmin**
 Création d'un registre privée pour ic groupe pour stocker les images de l’entreprise :
 
 ``docker run -d -p 4001:5000 --net ic-groupe --name registry-ic-groupe registry:2``
+
 Création d'une interface web pour notre registre privé :
 
 ``docker run -d --net ic-groupe -p 4002:80 -e REGISTRY_URL=http://registry-ic-groupe:5000 -e DELETE_IMAGES=true -e REGISTRY_TITLE="IC-GROUPE 
 REGISTRY" joxit/docker-registry-ui:1.5-static``
+
 Ajout d'un tag à notre image pour pouvoir la push sur notre registre privé :
 
 ``docker tag ic-webapp:1.0 localhost:4001/ic-webapp:1.0``
+
 Exécution d'un push de notre image sur notre registre privée :
  
 ``docker push localhost:4001/ic-webapp:1.0``
+
 Nous pouvons observer la présence notre image dans notre registre privé comme le montre la figure suivante:
 
 ![image](https://user-images.githubusercontent.com/79446351/201705023-9c2f6265-5cda-41ce-8c7b-6f44d7c1e995.png)
@@ -56,6 +60,7 @@ Nous pouvons observer la présence notre image dans notre registre privé comme 
 Ajout d'un tag à notre image pour pouvoir la push sur dockerhub:
 
 ``docker tag ic-webapp:1.0 lorinez/ic-webapp:1.0``
+
 Exécution d'un push de notre image sur le dockerhub :
 
 ``docker push lorinez/ic-webapp:1.0``
