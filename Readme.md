@@ -10,7 +10,7 @@ KHALLOULI Nadia -  MANNI Ikram - MVOUAMA Ben - NDIAYE Baye Ibrahima - ZOSSOUNGBO
 
 ## Construction du Dockerfile
 Création de l’image à partir du Dockerfile:
- - docker build -t ic-webapp:1.0 .
+ ``docker build -t ic-webapp:1.0 .``
 
 ![image](https://user-images.githubusercontent.com/79446351/201700417-1f0e256e-00c7-4af0-8143-e4f0b847f880.png)
 
